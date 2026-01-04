@@ -1,70 +1,70 @@
-# MCP Playwright Test Server
+# MCP Playwright Automation Framework
 
-This project is a **FastMCP-based automation server** that combines **Playwright browser automation** and **web content extraction**.  
-It exposes reusable tools that allow an AI client to control a real browser, interact with a demo webshop (Sauce Demo), and validate checkout flows end-to-end.
+This project is a **Model Context Protocol (MCP) server** that exposes a **Playwright-based browser automation framework** as callable tools for Large Language Models (LLMs), such as **Claude Desktop**.
 
-The server keeps the browser **stateful and persistent**, enabling multi-step workflows (open → login → add to cart → checkout → verify → finish).
+The framework is designed with **clean architecture principles**:
+- clear separation of concerns
+- Page Object Model
+- persistent browser state
+- MCP tools as a thin orchestration layer
 
----
+It enables an LLM to **open a real browser, navigate a web application, perform actions, and verify results**.
 
-## Features
 
-- Headed Chromium browser automation via Playwright
-- Stateful browser session management
-- Web page text extraction via HTTP + BeautifulSoup
-- Full Sauce Demo shopping and checkout flow automation
-- Designed for MCP-compatible AI clients
 
----
+## ✨ Key Features
 
-## Available Tools
+- MCP-compliant server using `FastMCP`
+- Playwright (async) browser automation
+- Persistent browser session across tool calls
+- Page Object Model for maintainability
+- Modular tool registration
+- Ready for AI-driven testing and automation
 
-### `ExtractWebContent`
-Extracts and cleans all visible text from a given URL using HTTP requests and BeautifulSoup.
 
-### `OpenBrowser`
-Launches a Chromium browser (non-headless) and navigates to a URL.  
-Keeps the browser open for subsequent steps.
 
-### `CloseBrowser`
-Closes the currently running browser and cleans up resources.
+## 🔗 Claude Desktop Integration
+This MCP server can be connected to Claude Desktop.
 
-### `LoginToSauceDemo`
-Logs into https://www.saucedemo.com using the default demo credentials.
+- Clone/Download this repository
+- Install Claude Desktop
+- Create 'claude_desktop_config.json' in the 'AppData\Roaming\Claude' directory
+- Add the following content to the 'claude_desktop_config.json' file:
 
-### `GetProducts`
-Retrieves all available products from the inventory page with their prices.
+```json
+{
+  "mcpServers": {
+    "playwright-mcp": {
+      "command": "F:/mcp_02/.venv/Scripts/python.exe",
+      "args": ["main.py"],
+      "cwd": "F:/mcp_02"
+    }
+  }
+}
+```
 
-### `AddItemToCart`
-Adds a specific product to the cart by exact product name.
 
-### `CheckItemInCart`
-Verifies whether a given product is present in the shopping cart.
 
-### `ClickCheckout`
-Navigates to the cart and starts the checkout process.
+## 📁 Project Structure
 
-### `FillCheckoutInfo`
-Fills out the checkout form (first name, last name, postal code).
-
-### `ClickContinue`
-Continues from the checkout information page to the overview page.
-
-### `VerifyCheckoutOverview`
-Validates:
-- Product name  
-- Item total  
-- Tax  
-- Final total  
-
-Returns a PASS / FAIL result with details.
-
-### `FinalizeOrder`
-Finishes the purchase and confirms successful order completion.
-
----
-
-## Running the Server
-
-```bash
-python server.py
+```text
+app/
+├── server.py              # MCP server initialization
+├── state.py               # Shared application state (browser, page)
+│
+├── browser/
+│   └── browser_manager.py # Browser lifecycle handling
+│
+├── pages/                 # Page Object Model
+│   ├── login_page.py
+│   ├── inventory_page.py
+│   ├── cart_page.py
+│   └── checkout_page.py
+│
+├── tools/                 # MCP tool definitions
+│   ├── browser_tools.py
+│   ├── auth_tools.py
+│   ├── cart_tools.py
+│   └── checkout_tools.py
+│
+main.py                    # MCP entry point
