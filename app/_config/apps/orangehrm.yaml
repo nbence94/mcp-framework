@@ -1,0 +1,14 @@
+app:
+  name: "orangehrm"
+  base_url: "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+
+auth:
+  default_user: "admin"
+
+  users:
+    admin:
+      username: "Admin"
+      password: "admin123"
+      type: "normal"
+      can_login: true
+

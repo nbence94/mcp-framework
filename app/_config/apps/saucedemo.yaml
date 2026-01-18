@@ -1,0 +1,43 @@
+app:
+  name: "saucedemo"
+  base_url: "https://www.saucedemo.com"
+
+auth:
+  default_user: "standard"
+
+  users:
+    standard:
+      username: "standard_user"
+      password: "secret_sauce"
+      type: "normal"
+      can_login: true
+
+    locked:
+      username: "locked_out_user"
+      password: "secret_sauce"
+      type: "blocked"
+      can_login: false
+
+    problem:
+      username: "problem_user"
+      password: "secret_sauce"
+      type: "buggy"
+      can_login: true
+
+    performance:
+      username: "performance_glitch_user"
+      password: "secret_sauce"
+      type: "slow"
+      can_login: true
+
+    error:
+      username: "error_user"
+      password: "secret_sauce"
+      type: "unstable"
+      can_login: true
+
+    visual:
+      username: "visual_user"
+      password: "secret_sauce"
+      type: "ui-bugs"
+      can_login: true
