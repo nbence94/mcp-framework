@@ -1,7 +1,8 @@
 from mcp.server.fastmcp import FastMCP
 
 # Tool regisztrációk
-from app.tools.saucedemo_config_tool import saucedemo_config_tools
+from app.tools.saucedemo.saucedemo_config_tool import saucedemo_config_tools
+from app.tools.general_web_tool import general_web_tools
 from app.tools.orangehrm_config_tool import orangehrm_config_tools
 
 def create_server() -> FastMCP:
@@ -20,6 +21,7 @@ def create_server() -> FastMCP:
 
     # --- Register tool groups ---
     saucedemo_config_tools(mcp)
+    general_web_tools(mcp)
     orangehrm_config_tools(mcp)
 
     return mcp
