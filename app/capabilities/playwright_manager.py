@@ -51,7 +51,6 @@ class PlaywrightManager:
             "url": url
         }
 
-    # ---------- state ----------
 
     @staticmethod
     async def get_state() -> dict:
