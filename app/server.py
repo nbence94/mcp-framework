@@ -5,6 +5,7 @@ from app.tools.saucedemo_config_tool import saucedemo_config_tools
 from app.tools.general_web_tool import general_web_tools
 from app.tools.orangehrm_config_tool import orangehrm_config_tools
 from app.tools.saucedemo_web_tool import saucedemo_web_tools
+from app.tools.orangehrm_web_tool import orangehrm_web_tools
 
 
 def create_server() -> FastMCP:
@@ -26,6 +27,7 @@ def create_server() -> FastMCP:
     general_web_tools(mcp)
     orangehrm_config_tools(mcp)
     saucedemo_web_tools(mcp)
+    orangehrm_web_tools(mcp)
 
     return mcp
 
