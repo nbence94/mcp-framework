@@ -1,7 +1,7 @@
 from pathlib import Path
 from app.core.yaml_config import YamlConfig
 from app.core.logger import get_logger
-
+from app.core.env import get_env
 
 class SaucedemoConfig:
 
@@ -38,16 +38,21 @@ class SaucedemoConfig:
         self.log.debug("Users requested: %s", list(users.keys()))
         return users
 
-    def user(self, key):
-        self.log.debug("User requested: %s", key)
+    def user(self, key: str) -> dict:
+        user = self._data["auth"]["users"].get(key)
 
-        users = self._data["auth"]["users"]
-
-        if key not in users:
-            self.log.error("User '%s' not found in config", key)
+        if not user:
             raise KeyError(f"Unknown Saucedemo user: {key}")
 
-        return users[key]
+        password_env = user["password_env"]
+        password = get_env(password_env)
+
+        self.log.info("Resolved credentials for user: %s", key)
+
+        return {
+            "username": user["username"],
+            "password": password,
+        }
 
     def default_user(self):
         default = self._data["auth"]["default_user"]

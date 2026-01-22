@@ -8,36 +8,36 @@ auth:
   users:
     standard:
       username: "standard_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "normal"
       can_login: true
 
     locked:
       username: "locked_out_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "blocked"
       can_login: false
 
     problem:
       username: "problem_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "buggy"
       can_login: true
 
     performance:
       username: "performance_glitch_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "slow"
       can_login: true
 
     error:
       username: "error_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "unstable"
       can_login: true
 
     visual:
       username: "visual_user"
-      password: "secret_sauce"
+      password: "SAUCEDEMO_STANDARD_PASSWORD"
       type: "ui-bugs"
       can_login: true

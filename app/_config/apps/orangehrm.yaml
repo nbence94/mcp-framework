@@ -8,7 +8,7 @@ auth:
   users:
     admin:
       username: "Admin"
-      password: "admin123"
+      password: "ORANGEHRM_ADMIN_PASSWORD"
       type: "normal"
       can_login: true
 
